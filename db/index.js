@@ -24,6 +24,8 @@ const pool = new Pool({
 
 
 const SQL_OBTENER_LISTA_MASCOTA_POR_ID="select * from mascota where id_mascota=$1";
+const SQL_OBTENER_LISTA_CLIENTE_POR_ID="select * from cliente where id_cliente=$1";
+const SQL_OBTENER_LISTA_SERVICIO_POR_ID="select s.id_client ,c.nombre ,c.apellido ,s.fecha_servicio ,s.estado from servicio s left join cliente c on c.id_cliente =s.id_client left join tipo_servicio ts on ts.id_tipo_servicio =s.id_tipo_servicio where 1=1 and c.id_cliente =$1 and ts.id_tipo_servicio =$2 order by s.id_client asc, s.fecha_servicio desc, s.estado desc";
 const SQL_INSERTAR_MASCOTA="insert into mascota(nombre,id_categoria) values($1,$2) RETURNING id_mascota";
 const SQL_OBTENER_CATEGORIA_POR_ID="select * from categoria where id=$1";
 function insertarMascota(datos){
@@ -41,6 +43,8 @@ function insertarMascota(datos){
 
 module.exports = {
     obtenerMascotaPorID: (id)=>pool.query(SQL_OBTENER_LISTA_MASCOTA_POR_ID,[id]),
+    obtenerServiciosPorIDClienteIdTipoServicio: (id_cliente,id_tipo_servicio)=>pool.query(SQL_OBTENER_LISTA_SERVICIO_POR_ID,[id_cliente,id_tipo_servicio]),
+    obtenerClientePorID: (id)=>pool.query(SQL_OBTENER_LISTA_CLIENTE_POR_ID,[id]),
     insertarMascota: insertarMascota,
     obtenerCategoriaPorID: (id)=>pool.query(SQL_OBTENER_CATEGORIA_POR_ID,[id]),
 }
