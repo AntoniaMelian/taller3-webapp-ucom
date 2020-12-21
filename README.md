@@ -28,3 +28,5 @@ http://localhost:3005/lista_articulos.html
 http://localhost:3005/listar_ventas.html
 
 URL del GIT para probar: https://github.com/AntoniaMelian/taller3-webapp-ucom/tree/develop
+
+El backup de la base de datos  está en la carpeta postgres
