@@ -18,6 +18,10 @@ var clienteRoutes= require('./routes/cliente');
 
 var servicioRoutes= require('./routes/servicio');
 
+var articuloRoutes= require('./routes/articulo');
+
+var ventasRoutes= require('./routes/ventas');
+
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
@@ -78,7 +82,10 @@ app.use('/mascota', mascotasRoutes);
 app.use('/categoria',categoriaRoutes);
 app.use('/cliente', clienteRoutes);
 app.use('/servicio', servicioRoutes);
+app.use('/articulo', articuloRoutes);
+app.use('/ventas', ventasRoutes);
 
+app.use(express.static(__dirname + '/webapp'));
 // launch ======================================================================
 
 app.listen(port);

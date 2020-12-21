@@ -28,19 +28,22 @@ router.get('/obtener-por-id/:id_cliente/:id_tipo_servicio', cors(), async (req, 
 
 });
 
-//Ejemplo de como insertar una mascota, le pasamos los datos del req.body a la función insertarMascota
+//Ejemplo de como insertar una solicitud de servicio, le pasamos los datos del req.body a la función insertarSolicitudServicio
 router.post('/insertar',cors(),async(req,res,next)=>{
-  console.log("insertar mascota")
+  console.log("insertar solicitud de servicio")
   var result={};
-  console.log("params", req.body);
+  console.log("params", req.body); 
 
-  var mascota=req.body;
-  result= await db.insertarMascota(mascota);
+  var solicitud_servicio=req.body;
+  console.log(req.body);
+  result= await db.insertarSolicitudServicio(solicitud_servicio);
 
   if(result.rows){
+      console.log("Se insertó correctamente la solicitud de servicio");
       res.send(result.rows[0]);
   }else{
       res.send("No se pudo insertar");
+      console.log('No se pudo insertar');
   }
 
 });
